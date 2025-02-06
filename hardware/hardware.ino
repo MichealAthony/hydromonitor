@@ -53,8 +53,8 @@ static const char* mqtt_server    = "broker.emqx.io";                // Broker I
 static uint16_t mqtt_port         = 1883;
 
 // WIFI CREDENTIALS
-const char* ssid                  = "CWC-2231079_EXT"; // Add your Wi-Fi ssid
-const char* password              = "c4hHyBmqksdy"; // Add your Wi-Fi password 
+const char* ssid                  = "MonaConnect"; // Add your Wi-Fi ssid
+const char* password              = ""; // Add your Wi-Fi password 
 //const char* ssid                  = "UNTC-Connect"; // Add your Wi-Fi ssid
 //const char* password              = "risenlord^19"; // Add your Wi-Fi password 
 //const char* ssid                  = "DESKTOP-PJ8NO24 8386"; // Add your Wi-Fi ssid
@@ -171,7 +171,11 @@ void vUpdate( void * pvParameters )  {
           Serial.print(h);
           Serial.print(F("%  Temperature: "));
           Serial.print(t);
-          Serial.println(F("°C "));
+          Serial.println(F("°C")); // Ensures a new line after temperature
+
+          Serial.print(F("HeatIndex: "));
+          Serial.print(calcHeatIndex(convert_Celsius_to_fahrenheit(t), h));
+          Serial.println(F("°C")); // Ensures proper formatting
 
           if(isNumber(t)){
               // ##Publish update according to ‘{"id": "student_id", "timestamp": 1702212234, "temperature": 30, "humidity":90, "heatindex": 30}’
