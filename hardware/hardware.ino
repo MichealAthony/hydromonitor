@@ -39,16 +39,16 @@
 #define ARDUINOJSON_USE_DOUBLE      1 
 
 // DEFINE THE CONTROL PINS FOR THE DHT22 
-#define DHTPIN    33     // Digital pin connected to the DHT sensor
-#define DATA_PIN  22
+#define DHTPIN    14     // Digital pin connected to the DHT sensor
+#define DATA_PIN  33
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 #define NUM_LEDS 7
 
 
 
 // MQTT CLIENT CONFIG  
-static const char* pubtopic       = "620160532";                    // Add your ID number here
-static const char* subtopic[]     = {"620160532_sub","/elet2415"};  // Array of Topics(Strings) to subscribe to
+static const char* pubtopic       = "620161390";                    // Add your ID number here
+static const char* subtopic[]     = {"620161390_sub","/elet2415"};  // Array of Topics(Strings) to subscribe to
 static const char* mqtt_server    = "broker.emqx.io";                // Broker IP address or Domain name as a String 
 static uint16_t mqtt_port         = 1883;
 
@@ -187,7 +187,7 @@ void vUpdate( void * pvParameters )  {
               char message[800]   = {0};
               
               // 3. Add key:value pairs to JSon object based on above schema
-              doc["id"]           = "620160532"; // Change to your student ID number
+              doc["id"]           = "620161390"; // Change to your student ID number
               doc["timestamp"]    = getTimeStamp();
               doc["temperature"]  = t;
               doc["humidity"]     = h;
@@ -197,7 +197,7 @@ void vUpdate( void * pvParameters )  {
               serializeJson(doc, message);  // Seralize / Covert JSon object to JSon string and store in char* array  
                
               // 5. Publish message to a topic sobscribed to by both backend and frontend   
-              publish("620160532", message);    // Publish to a topic that both the Backend and the Frontend subscribes to.             
+              publish("620161390", message);    // Publish to a topic that both the Backend and the Frontend subscribes to.             
 
           }
 
